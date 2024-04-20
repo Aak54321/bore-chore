@@ -1,7 +1,7 @@
 import express from "express";
 import ffmpeg from "fluent-ffmpeg";
 const app = express();
-const port = 3000;
+
 app.use(express.json());
 app.post("/process-video", (req, res) => {
   const inputFilePath = req.body.inputFilePath;
@@ -21,6 +21,7 @@ app.post("/process-video", (req, res) => {
     .save(outputFilePath);
 });
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running at ${port}`);
 });
